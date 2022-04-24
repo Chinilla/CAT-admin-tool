@@ -22,6 +22,7 @@ setup(
     },
     author_email="edward@chinilla.net",
     setup_requires=["setuptools_scm"],
+    packages=['chcats'],
     install_requires=dependencies,
     url="https://github.com/Chinilla",
     license="https://opensource.org/licenses/Apache-2.0",
