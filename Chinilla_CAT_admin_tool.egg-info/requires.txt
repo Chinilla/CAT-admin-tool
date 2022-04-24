@@ -1,4 +1,0 @@
-chinilla-blockchain
-
-[dev]
-black
