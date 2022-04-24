@@ -15,9 +15,8 @@ dev_dependencies = [
 
 setup(
     name="Chinilla_CAT_Admin",
-    version="0.0.1",
+    version="1.0.0",
     author="Edward Teach",
-    packages=find_packages(exclude=("tests",)),
     entry_points={
         "console_scripts": ["chcats = chcats.chcats:main"],
     },
