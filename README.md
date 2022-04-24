@@ -1,8 +1,13 @@
-CAT Admin Tool
+Chinilla Cat Admin
 =======
 
 Install
 -------
+
+**Pip**
+```
+pip install chinilla-cat-admin
+```
 
 **Ubuntu/MacOSs**
 ```
