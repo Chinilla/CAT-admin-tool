@@ -6,8 +6,8 @@ Install
 
 **Ubuntu/MacOSs**
 ```
-git clone https://github.com/Chia-Network/CAT-admin-tool.git
-cd CAT-admin-tool
+git clone https://github.com/Chinilla/chinilla-CAT-admin.git
+cd chinilla-CAT-admin
 python3 -m venv venv
 . ./venv/bin/activate
 python -m pip install --upgrade pip setuptools wheel
@@ -17,8 +17,8 @@ pip install .
 
 **Windows Powershell**
 ```
-git clone https://github.com/Chia-Network/CAT-admin-tool.git
-cd CAT-admin-tool
+git clone https://github.com/Chinilla/chinilla-CAT-admin.git
+cd chinilla-CAT-admin
 py -m venv venv
 ./venv/Scripts/activate
 python -m pip install --upgrade pip setuptools wheel

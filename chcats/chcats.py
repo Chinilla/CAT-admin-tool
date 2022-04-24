@@ -7,25 +7,25 @@ import json
 from typing import Optional, Tuple, Iterable, Union, List
 from blspy import G2Element, AugSchemeMPL
 
-from chia.cmds.wallet_funcs import get_wallet
-from chia.rpc.wallet_rpc_client import WalletRpcClient
-from chia.util.default_root import DEFAULT_ROOT_PATH
-from chia.util.config import load_config
-from chia.util.ints import uint16
-from chia.util.byte_types import hexstr_to_bytes
-from chia.types.blockchain_format.program import Program
+from chinilla.cmds.wallet_funcs import get_wallet
+from chinilla.rpc.wallet_rpc_client import WalletRpcClient
+from chinilla.util.default_root import DEFAULT_ROOT_PATH
+from chinilla.util.config import load_config
+from chinilla.util.ints import uint16
+from chinilla.util.byte_types import hexstr_to_bytes
+from chinilla.types.blockchain_format.program import Program
 from clvm_tools.clvmc import compile_clvm_text
 from clvm_tools.binutils import assemble
-from chia.types.spend_bundle import SpendBundle
-from chia.wallet.cat_wallet.cat_utils import (
+from chinilla.types.spend_bundle import SpendBundle
+from chinilla.wallet.cat_wallet.cat_utils import (
     construct_cat_puzzle,
     CAT_MOD,
     SpendableCAT,
     unsigned_spend_bundle_for_spendable_cats,
 )
-from chia.util.bech32m import decode_puzzle_hash
+from chinilla.util.bech32m import decode_puzzle_hash
 
-# Loading the client requires the standard chia root directory configuration that all of the chia commands rely on
+# Loading the client requires the standard chinilla root directory configuration that all of the chinilla commands rely on
 async def get_client() -> Optional[WalletRpcClient]:
     try:
         config = load_config(DEFAULT_ROOT_PATH, "config.yaml")
@@ -90,7 +90,9 @@ def parse_program(program: Union[str, Program], include: Iterable = []) -> Progr
                 filestring: str = file.read()
                 if "(" in filestring:  # If it's not compiled
                     # TODO: This should probably be more robust
-                    if re.compile(r"\(mod\s").search(filestring):  # If it's Chialisp
+                    if re.compile(r"\(mod\s").search(
+                        filestring
+                    ):  # If it's Chinillalisp
                         prog = Program.to(
                             compile_clvm_text(filestring, append_include(include))
                         )
@@ -137,7 +139,7 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
     "--amount",
     required=True,
     type=int,
-    help="The amount to issue in mojos (regular XCH will be used to fund this)",
+    help="The amount to issue in vojos (regular HCX will be used to fund this)",
 )
 @click.option(
     "-m",
@@ -145,7 +147,7 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
     required=True,
     default=0,
     show_default=True,
-    help="The fees for the transaction, in mojos",
+    help="The fees for the transaction, in vojos",
 )
 @click.option(
     "-f",
@@ -203,7 +205,7 @@ def cli(
     as_bytes: bool,
     select_coin: bool,
     quiet: bool,
-    push: bool
+    push: bool,
 ):
     ctx.ensure_object(dict)
 
@@ -283,7 +285,9 @@ def cli(
     if as_bytes:
         final_bundle_dump = bytes(final_bundle).hex()
     else:
-        final_bundle_dump = json.dumps(final_bundle.to_json_dict(), sort_keys=True, indent=4)
+        final_bundle_dump = json.dumps(
+            final_bundle.to_json_dict(), sort_keys=True, indent=4
+        )
 
     confirmation = push
 
@@ -299,7 +303,9 @@ def cli(
             print(f"Error pushing transaction: {response['error']}")
             return
 
-    print(f"Successfully pushed the transaction to the network\nAsset ID: {curried_tail.get_tree_hash()}")
+    print(
+        f"Successfully pushed the transaction to the network\nAsset ID: {curried_tail.get_tree_hash()}"
+    )
     if not confirmation:
         print(f"Spend Bundle: {final_bundle_dump}")
 

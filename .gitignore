@@ -1,5 +1,5 @@
 venv
-CAT_admin_tool.egg-info
+Chinilla_CAT_Admin.egg-info
 .eggs
 __pycache__
 main.sym
