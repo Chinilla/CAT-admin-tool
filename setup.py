@@ -17,7 +17,7 @@ dev_dependencies = [
 
 setup(
     name="chinilla_CAT_admin",
-    version="1.0.0",
+    version="1.1.0",
     author="Edward Teach",
     entry_points={
         "console_scripts": [
