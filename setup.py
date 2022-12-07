@@ -6,11 +6,13 @@ with open("README.md", "rt") as fh:
     long_description = fh.read()
 
 dependencies = [
-    "chinilla-blockchain",
+    "chinilla-blockchain==1.3.0",
 ]
 
 dev_dependencies = [
-    "black",
+    "black==21.12b0",
+    "pytest",
+    "pytest-env",
 ]
 
 setup(
@@ -18,7 +20,11 @@ setup(
     version="1.0.0",
     author="Edward Teach",
     entry_points={
-        "console_scripts": ["chcats = chcats.chcats:main"],
+        "console_scripts": [
+            "cats = cats.cats:main",
+            "secure_the_bag = cats.secure_the_bag:main",
+            "unwind_the_bag = cats.unwind_the_bag:main"
+        ],
     },
     author_email="edward@chinilla.net",
     setup_requires=["setuptools_scm"],

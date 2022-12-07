@@ -3,3 +3,5 @@ Chinilla_CAT_Admin.egg-info
 .eggs
 __pycache__
 main.sym
+build
+.vscode
